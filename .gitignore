@@ -1,0 +1,9 @@
+
+ardalis-apiendpoints-sample/obj/
+ardalis-apiendpoints-sample/bin/
+.vs
+MinimalApisSample/bin/Debug/net6.0/
+
+MinimalApisSample/obj/Debug/net6.0/
+
+MinimalApisSample/obj/
