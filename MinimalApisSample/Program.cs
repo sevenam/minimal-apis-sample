@@ -1,3 +1,4 @@
+using MinimalApisSample.Dtos;
 using MinimalApisSample.Endpoints.StuffEndpoints;
 using MinimalApisSample.Services;
 
@@ -30,5 +31,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Standard minimal apis:
+app.MapPost("/stuffystuff/", (Stuff stuff, IStuffService stuffService) => { return stuffService.AddStuff(stuff); });
+app.MapGet("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.GetStuffById(id); });
+app.MapDelete("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.RemoveStuff(id); });
+app.MapGet("/stuffystuff/", (IStuffService stuffService) => { return stuffService.GetAllTheStuff(); });
 
 app.Run();
