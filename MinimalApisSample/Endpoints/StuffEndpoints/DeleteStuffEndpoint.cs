@@ -9,7 +9,7 @@ namespace MinimalApisSample.Endpoints.StuffEndpoints
       app.MapDelete("/stuff/{id}", (Guid id, IStuffService stuffService) =>
       {
         return stuffService.RemoveStuff(id);
-      });
+      }).WithOpenApi(op => new(op) { Summary = "Stuff.Delete" });
     }
   }
 }

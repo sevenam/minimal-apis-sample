@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => options.EnableAnnotations());
 builder.Services.AddScoped<AddStuffEndpoint>();
 builder.Services.AddScoped<GetAllTheStuffEndpoint>();
 builder.Services.AddScoped<DeleteStuffEndpoint>();
@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Standard minimal apis:
+// Standard minimal apis - automatically figures out what is injected from the request and from DI container (but you can specify if you like):
 app.MapPost("/stuffystuff/", (Stuff stuff, IStuffService stuffService) => { return stuffService.AddStuff(stuff); }).WithTags("StuffyStuff");
 app.MapGet("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.GetStuffById(id); }).WithTags("StuffyStuff");
 app.MapDelete("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.RemoveStuff(id); }).WithTags("StuffyStuff");

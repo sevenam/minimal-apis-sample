@@ -11,7 +11,7 @@ namespace MinimalApisSample.Endpoints.StuffEndpoints
       app.MapPost("/stuff/", ([FromBody] Stuff stuff, [FromServices] IStuffService stuffService) =>
       {
         return stuffService.AddStuff(stuff);
-      });
+      }).WithOpenApi(op => new(op) { Summary = "Stuff.Add" });
     }
 
   }

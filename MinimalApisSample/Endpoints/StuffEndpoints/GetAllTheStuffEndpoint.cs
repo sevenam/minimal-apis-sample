@@ -9,7 +9,7 @@ namespace MinimalApisSample.Endpoints.StuffEndpoints
       app.MapGet("/stuff/", (IStuffService stuffService) =>
       {
         return stuffService.GetAllTheStuff();
-      });
+      }).WithOpenApi(op => new(op) { Summary = "Stuff.GetAll" });
     }
 
   }
