@@ -33,9 +33,9 @@ if (app.Environment.IsDevelopment())
 }
 
 // Standard minimal apis - automatically figures out what is injected from the request and from DI container (but you can specify if you like):
+app.MapGet("/stuffystuff/", (IStuffService stuffService) => { return stuffService.GetAllTheStuff(); }).WithTags("StuffyStuff");
 app.MapPost("/stuffystuff/", (Stuff stuff, IStuffService stuffService) => { return stuffService.AddStuff(stuff); }).WithTags("StuffyStuff");
 app.MapGet("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.GetStuffById(id); }).WithTags("StuffyStuff");
 app.MapDelete("/stuffystuff/{id}", (Guid id, IStuffService stuffService) => { return stuffService.RemoveStuff(id); }).WithTags("StuffyStuff");
-app.MapGet("/stuffystuff/", (IStuffService stuffService) => { return stuffService.GetAllTheStuff(); }).WithTags("StuffyStuff");
 
 app.Run();
